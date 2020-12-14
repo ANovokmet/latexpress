@@ -1,0 +1,115 @@
+{
+    "personalDetails": {
+        "picture": "alice.jpeg",
+        "name": "Alice",
+        "title": "Adventurer",
+        "dateOfBirth": "26 November 1865",
+        "addressShort": "United Kingdom",
+        "phone": "+39 0325658974",
+        "site": "http://en.wikipedia.org",
+        "email": "alice@wonderland.com"
+    },
+    "aboutMe": "Alice is a sensible prepubescent girl from a wealthy English family who finds herself in a strange world ruled by imagination and fantasy. Alice feels comfortable with her identity and has a strong sense that her environment is comprised of clear, logical, and consistent rules and features. Alice's familiarity with the world has led one critic to describe her as a \"disembodied intellect\". Alice displays great curiosity and attempts to fit her diverse experiences into a clear understanding of the world.",
+    "skills": [
+        {
+            "name": "pursuer of rabbits",
+            "rating": "5.8"
+        },
+        {
+            "name": "good manners",
+            "rating": "4"
+        },
+        {
+            "name": "outgoing",
+            "rating": "4.3"
+        },
+        {
+            "name": "polite",
+            "rating": "4"
+        },
+        {
+            "name": "Java",
+            "rating": "0.01"
+        }
+    ],
+    "interests": "The heroine and the dreamer of Wonderland; Alice is the principal character.",
+    "educations": [
+        {
+            "dates": "since 1865",
+            "title": "Ph.D. candidate in Computer Science",
+            "location": "Wonderland",
+            "description": "A Quantified Theory of Social Cohesion."
+        },
+        {
+            "dates": "1863-1865",
+            "title": "M.Sc. magna cum laude",
+            "location": "Wonderland",
+            "description": "Majoring in Computer Science"
+        },
+        {
+            "dates": "1861-1863",
+            "title": "B.Sc. magna cum laude",
+            "location": "Wonderland",
+            "description": "Majoring in Computer Science"
+        },
+        {
+            "dates": "1856-1861",
+            "title": "High school",
+            "location": "Wonderland",
+            "description": "Specializing in mathematics and physics."
+        }
+    ],
+    "publications": [
+        {
+            "dates": "1865",
+            "title": "Chapter One, Down the Rabbit Hole."
+        },
+        {
+            "dates": "1865",
+            "title": "Chapter Two, The Pool of Tears."
+        },
+        {
+            "dates": "1865",
+            "title": "Chapter Three,  The Caucus Race and a Long Tale."
+        },
+        {
+            "dates": "1865",
+            "title": "Chapter Four,  The Rabbit Sends a Little Bill."
+        },
+        {
+            "dates": "1865",
+            "title": "Chapter Five,  Advice from a Caterpillar."
+        }
+    ],
+    "awards": [
+        {
+            "dates": "1987",
+            "title": "All-Time Best Fantasy Novel."
+        },
+        {
+            "dates": "1998",
+            "title": "All-Time Best Fantasy Novel before 1990."
+        }
+    ],
+    "experience": [
+        {
+            "dates": "1900",
+            "title": "Alice in Wonderland-The Circra (1900's) Silent Film.",
+            "location": "Film",
+            "description": "The first Alice on film was over a hundred years ago."
+        },
+        {
+            "dates": "1933",
+            "title": "Alice in Wonderland 1933 version.",
+            "location": "Film",
+            "description": "This film stars Ethel griffies and Charlotte Henry. It was a box office flop when it was released."
+        },
+        {
+            "dates": "1951",
+            "title": "Disney Film.",
+            "location": "Film",
+            "description": "Walt Disney brings Lewis Carroll’s fantasy story to life in this well done animated classic. Even though many elements from the book were dropped, such as the duchess with the baby pig and mock turtle, this version is without a doubt the most famous Alice adaption made."
+        }
+    ],
+    "review": "Alice approaches Wonderland as an anthropologist, but maintains a strong sense of noblesse oblige that comes with her class status. She has confidence in her social position, education, and the Victorian virtue of good manners. Alice has a feeling of entitlement, particularly when comparing herself to Mabel, whom she declares has a poky little house, and no toys. Additionally, she flaunts her limited information base with anyone who will listen and becomes increasingly obsessed with the importance of good manners as she deals with the rude creatures of Wonderland. Alice maintains a superior attitude and behaves with solicitous indulgence toward those she believes are less privileged."
+}
