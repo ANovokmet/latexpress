@@ -1,20 +1,24 @@
 class PdfService {
     constructor(baseUrl) {
         this.baseUrl = baseUrl;
+        this.options = {
+            credentials: 'include'
+        }
     }
 
     async getSchema(template) {
-        const response = await fetch(`${this.baseUrl}/schema?t=${template}`);
+        const response = await fetch(`${this.baseUrl}/schema?t=${template}`, this.options);
         return response.json();
     }
 
     async getExampleData(template) {
-        const response = await fetch(`${this.baseUrl}/example-data?t=${template}`);
+        const response = await fetch(`${this.baseUrl}/example-data?t=${template}`, this.options);
         return response.json();
     }
 
     postGenerate = cancellable(async (template, data, signal) => {
         const response = await fetch(`${this.baseUrl}/generate?t=${template}`, {
+            ...this.options,
             method: "POST",
             headers: {
                 'Accept': 'application/pdf, application/json',
@@ -34,16 +38,17 @@ class PdfService {
 
 function cancellable(fn) {
     let controller;
-    return function(...args) {
+    return async function(...args) {
         try {
             if(controller) {
                 controller.abort();
             }
             controller = new AbortController();
-            return fn(...args, controller.signal);
+            return await fn(...args, controller.signal);
         } catch(error) {
-            if (error.code !== 20) { 
+            if (error.code === 20) {
                 // abort occurred
+                error.cancelled = true;
             }
             console.log('caught', {error})
             throw error;

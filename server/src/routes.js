@@ -5,6 +5,9 @@ import path, { dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
+const envData = {
+    _uploadDir: 'C:/Users/ante.novokmet/Desktop/Projects/latex-cv-editor/server/upload/'
+};
 
 const router = Router();
 
@@ -28,16 +31,29 @@ router.get('/schema', (req, res) => {
 // out: pdf 
 router.post('/generate', (req, res) => {
     const templateName = req.query['t'];
-    const data = req.body
+    const data = {
+        ...req.body,
+        ...envData
+    };
     const template = readFile(`../templates/${templateName}/main.texbars`);
-    
-    
-    const pdf = lib.getPdfFromTexbars(template, data);
+    const sessionID = req.sessionID;
 
-    res.contentType('application/pdf');
-    pdf.pipe(res);
-    pdf.on('finish', () => console.log('PDF generated!'));
-    pdf.on('error', err => {
+    try {
+        const pdf = lib.getPdfFromTexbars(template, data, { sessionID });
+    
+        res.contentType('application/pdf');
+        pdf.pipe(res);
+        pdf.on('finish', () => console.log('PDF generated!'));
+        pdf.on('error', err => {
+            console.error('err:', err);
+            res.status(500);
+            res.contentType('application/json');
+            res.send({
+                message: err.message, 
+                stack: err.stack 
+            });
+        });
+    } catch (error) {
         console.error('err:', err);
         res.status(500);
         res.contentType('application/json');
@@ -45,7 +61,7 @@ router.post('/generate', (req, res) => {
             message: err.message, 
             stack: err.stack 
         });
-    });
+    }
 });
 
 router.get('/example-data', (req, res) => {
@@ -58,5 +74,6 @@ router.get('/example-data', (req, res) => {
         res.send({});
     }
 });
+
 
 export default router;

@@ -46,7 +46,7 @@
     <div class="form-rows">
         {#each data as row, i}
             <div class="form-row card">
-                <FormComponent key={'#'} schema={schema['#']} bind:data={row} on:change></FormComponent>
+                <FormComponent options={{hideLabel: true}} key={'#'} schema={schema['#']} bind:data={row} on:change></FormComponent>
                 <button class="btn btn-icon card-action" on:click={() => removeRow(row)}>
                     <i class="icon icon-minus"></i>
                 </button>

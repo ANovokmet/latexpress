@@ -4,12 +4,13 @@
     import FormInput from './FormInput.svelte';
     import FormList from './FormList.svelte';
     import FormObject from './FormObject.svelte';
+    import FormFileUpload from './FormFileUpload.svelte';
 
     setContext('renderMap', {
         'object': FormObject,
         'array': FormList,
         'any': FormInput,
-        'upload': FormInput
+        'upload': FormFileUpload
     });
 
     let key = 'Data';

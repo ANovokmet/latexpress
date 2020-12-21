@@ -5,10 +5,11 @@
     export let key;
     export let schema;
     export let data;
+    export let options;
 </script>
 
 {#if schema}
-<svelte:component this={renderMap[schema._type]} key={key} schema={schema} bind:data={data} on:change></svelte:component>
+<svelte:component this={renderMap[schema._type]} {options} {key} {schema} bind:data={data} on:change></svelte:component>
 {/if}
 
 <style>

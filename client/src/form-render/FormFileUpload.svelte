@@ -6,11 +6,36 @@
     export let schema;
 
     const dispatch = createEventDispatcher();
+
+    let files;
+    let fileInput;
+    async function upload(file) {
+        const formData = new FormData();
+        formData.append('image', file);
+        const response = await fetch('http://localhost:3000/api/upload', {
+            method: "POST", 
+            body: formData,
+            credentials: 'include'
+        });
+        if (response.ok) {
+            const result = await response.json();
+            data = result.fileName;
+            dispatch('change', { data });
+        } else {
+            const text = await response.text();
+        }
+    }
+
+    $: {
+        if(files && files[0]) {
+            upload(files[0]);
+        }
+    }
 </script>
 
 <div class="form-group input-gray">
     <label class="form-label">{schema._label}</label>
-    <textarea class="form-input" bind:value={data} on:change></textarea>
+    <input type="file" class="form-input" accept="image/png, image/jpeg" bind:files={files}>
 </div>
 
 <style>

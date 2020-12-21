@@ -10,13 +10,27 @@ import { extractSchema } from './generate-schema.js';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const LATEX_CMD = process.env.LATEX_CMD || 'C:/Program Files/MiKTeX/miktex/bin/x64/pdflatex.exe';
+const LATEX_INPUTS = process.env.LATEX_INPUTS || ['../templates/cv_16'];
 
-function latexToPdf(input, output) {
+function resolvePaths(paths) {
+    if(Array.isArray(paths)) {
+        return paths.map(p => path.resolve(__dirname, p));
+    }
+    return path.resolve(__dirname, paths);
+}
 
+
+function latexToPdf(input, output, options) {
+    const inputs = [...resolvePaths(LATEX_INPUTS)];
+    const p = path.resolve(__dirname, '../upload', options.sessionID);
+    if(options.sessionID) {
+        inputs.push(p);
+    }
+    console.log('session id:', inputs, p)
     const outputStream = fs.createWriteStream(output);
     const pdf = latex(input, {
         cmd: LATEX_CMD,
-        inputs: [path.resolve(__dirname, '../templates/cv_16')]
+        inputs
     });
 
     pdf.pipe(outputStream)
@@ -79,13 +93,13 @@ export function getSchemaFromTexbars(texbarsTemplate) {
     return schema;
 }
 
-export function getPdfFromTexbars(texbarsTemplate, data) {
+export function getPdfFromTexbars(texbarsTemplate, data, options = {}) {
     const handlebars_input = texbars2handlebars(texbarsTemplate);
     // sanitize data
     sanitize(data)
     const handlebars_output = Handlebars.compile(handlebars_input)(data);
     const tex_input = handlebarOutput2Tex(handlebars_output);
-    return latexToPdf(tex_input, 'output.pdf');
+    return latexToPdf(tex_input, 'output.pdf', options);
 }
 
 export function getTexTemplate(handlebars_input, data) {

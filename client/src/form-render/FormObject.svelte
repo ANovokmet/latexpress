@@ -4,6 +4,7 @@
     export let key;
     export let schema;
     export let data;
+    export let options = {};
 
     function getKeys(schema) {
         const _private = {
@@ -28,16 +29,16 @@
     }
 </script>
 
-<div>
     {#if schema && data}
         <div class="form-object">
+            {#if !options.hideLabel}
             <h3 class="form-label">{schema._label || key}</h3>
+            {/if}
             {#each keys as key}
-                <FormComponent key={key} schema={schema[key]} bind:data={data[key]} on:change></FormComponent>
+            <FormComponent key={key} schema={schema[key]} bind:data={data[key]} on:change></FormComponent>
             {/each}
         </div>
     {/if}
-</div>
 
 <style>
     

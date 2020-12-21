@@ -1,13 +1,9 @@
-import Form from './form-render/Form.svelte';
-import Document from './DocumentViewer.svelte';
 import Edit from './views/Edit.svelte';
+import Create from './views/Create.svelte';
 
 const routes = [
-    {
-      name: '/',
-      component: Edit,
-    },
-    { name: 'login', component: Document }
-  ]
-  
-  export { routes }
+  { name: '/', component: Edit },
+  { name: '/create', component: Create }
+];
+
+export { routes }

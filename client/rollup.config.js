@@ -30,6 +30,14 @@ function serve() {
 	};
 }
 
+function copyLocal(filePath) {
+	const targetFile = path.basename(filePath)
+	fs.copyFileSync(
+		path.resolve(filePath),
+		path.resolve('./public/build/', targetFile)
+	);
+}
+
 export default {
 	input: 'src/main.js',
 	output: {
@@ -66,18 +74,11 @@ export default {
 				// this.addWatchFile(path.resolve('./src/worker.js'));
 			},
 			generateBundle() {
-				fs.copyFileSync(
-					path.resolve('./node_modules/pdfjs-dist/build/pdf.worker.js'),
-					path.resolve('./public/build/pdf.worker.js')
-				);
-				fs.copyFileSync(
-					path.resolve('./node_modules/pdfjs-dist/build/pdf.worker.js.map'),
-					path.resolve('./public/build/pdf.worker.js.map')
-				);
-				fs.copyFileSync(
-					path.resolve('./node_modules/pdfjs-dist/web/pdf_viewer.css'),
-					path.resolve('./public/build/pdf_viewer.css')
-				);
+				copyLocal('./node_modules/pdfjs-dist/build/pdf.worker.js');
+				copyLocal('./node_modules/pdfjs-dist/build/pdf.worker.js.map');
+				copyLocal('./node_modules/pdfjs-dist/web/pdf_viewer.css');
+				copyLocal('./node_modules/spectre.css/dist/spectre-icons.css');
+				copyLocal('./node_modules/spectre.css/dist/spectre.css');
 			}
 		},
         //webWorkerLoader(/* configuration */),
